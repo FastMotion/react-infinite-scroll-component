@@ -236,6 +236,7 @@ export default class InfiniteScroll extends Component<Props, State> {
   };
 
   isElementAtTop(target: HTMLElement, scrollThreshold: string | number = 0.8) {
+    const isInverseMode = this.props.inverse;
     const clientHeight =
       target === document.body || target === document.documentElement
         ? window.screen.availHeight
@@ -247,14 +248,14 @@ export default class InfiniteScroll extends Component<Props, State> {
       return (
         target.scrollTop <=
           threshold.value + clientHeight - target.scrollHeight + 1 ||
-        target.scrollTop === 0
+        (!isInverseMode && target.scrollTop === 0)
       );
     }
 
     return (
       target.scrollTop <=
         threshold.value / 100 + clientHeight - target.scrollHeight + 1 ||
-      target.scrollTop === 0
+      (!isInverseMode && target.scrollTop === 0)
     );
   }
 

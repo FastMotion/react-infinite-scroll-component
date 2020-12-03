@@ -395,7 +395,7 @@ var InfiniteScroll = (function (React) {
             }
             return (target.scrollTop <=
                 threshold.value / 100 + clientHeight - target.scrollHeight + 1 ||
-                target.scrollTop === 0);
+                (!isInverseMode && target.scrollTop === 0));
         };
         InfiniteScroll.prototype.isElementAtBottom = function (target, scrollThreshold) {
             if (scrollThreshold === void 0) { scrollThreshold = 0.8; }
